@@ -1,0 +1,4 @@
+[root]
+name = "cargo-test"
+version = "0.1.0"
+
