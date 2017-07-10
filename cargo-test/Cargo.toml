@@ -1,6 +1,0 @@
-[package]
-name = "cargo-test"
-version = "0.1.0"
-authors = ["jordan <jlevin38@binghamton.edu>"]
-
-[dependencies]
