@@ -1,6 +1,6 @@
 #[derive(Debug)]
 struct Node {
-    next: Node,
+    next: Option<Node>,
     val: i32,
     id: i32,
 }

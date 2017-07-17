@@ -1,0 +1,8 @@
+[package]
+name = "text-adventure"
+version = "0.1.0"
+authors = ["jordan <jlevin38@binghamton.edu>"]
+
+[dependencies]
+readline = "0.0.13"
+rand = "0.3"

@@ -1,4 +1,4 @@
-enum Coin(){
+enum Coin{
     Penny,
     Nickel,
     Dime,
@@ -15,6 +15,6 @@ fn value_in_cents(coin: Coin) -> i32 {
 }
 
 fn main(){
-
+    println!("{}", value_in_cents(Coin::Penny));
 }
 
