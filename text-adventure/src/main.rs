@@ -4,8 +4,9 @@ extern crate rand;
 use readline::readline;
 use rand::Rng;
     
-const SIZE: i32 = 20;
+const SIZE: usize = 20;
 
+#[derive(Debug, Copy, Clone)]
 enum TileType {
     Forest,
     Field,
@@ -23,7 +24,7 @@ struct Tile {
 
 impl Tile {
     pub fn default() -> Tile {
-        Tile {Type: TileType::Plains, EnemyChance: 0, LootChance: 0, Difficulty: 0}
+        Tile {Type: TileType::Field, EnemyChance: 0, LootChance: 0, Difficulty: 0}
     }
 
     pub fn new(Type: TileType, EnemyChance: i32, LootChance: i32, Difficulty: i32) -> Tile {
@@ -38,19 +39,18 @@ struct World {
 
 impl World {
     pub fn new() -> World {
-        tiles: [[Tile; SIZE]; SIZE] = [[Tile::default; SIZE]; SIZE];
+        let mut tiles: [[Tile; SIZE]; SIZE] = [[Tile::default(); SIZE]; SIZE];
         for i in 0..20 {
             for j in 0..20 {
-                let diff = rand::thread_rng().gen_range(1, 100) * (i+j)/10;
-                tiles[i][j] = Tile::new(TileType::Field, EnemyChance: diff, 
-                                        LootChance: diff, Difficulty: diff);
+                let diff: i32 = rand::thread_rng().gen_range(1, 100) * (i+j)/10;
+                tiles[i as usize][j as usize] = Tile::new(TileType::Field, diff, diff, diff);
             }
         }
         World {Tiles: tiles}
     }
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 struct Player {
     pub name: String,
     pub level: i32,
