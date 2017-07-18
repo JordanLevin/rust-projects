@@ -1,54 +1,51 @@
-#[derive(Debug)]
-struct Node {
-    next: Option<Node>,
-    val: i32,
-    id: i32,
+enum Node {
+    Cons(i32, Box<List>),
+    Nil,
 }
 
-static count: i32 = 0;
-impl Node{
-    //prints the list
+use Node::{Cons, Nil};
+
+struct List {
+    pub head: Node,
+}
+
+impl List -> List{
+    fn new(){
+        List{Node: Nil} 
+    }
+
+    fn add(mut &self, val: i32){
+        let &mut current: Node = &mut self.head;
+        let mut next: Node = Nil;
+        match current {
+            Nil => {
+                current
+            },
+            Cons(num, next) => {
+                next = current.next;
+            },
+        }
+        loop {
+            match current{
+                Cons(num, next) =>{
+
+                },
+                Nil => {
+                    
+                },
+            }
+        }
+    }
+
+    fn delete(&self, val: i32){
+
+    }
+
     fn print(&self){
-        let current: &Node = &self;
-        while current != None{
-            println!("{:?}", current);
-            current = current.next;
-        }
-    }
 
-    //creates and adds a new node to the list
-    fn add(&self, value: i32){
-       let newNode = Node::new(value);
-       let current: &Node = &self;
-       while current.next != None{
-           current = current.next;
-       }
-       current.next = newNode;
-    }
-
-    //Deleted node by id. returns false on fail and true on success
-    fn del(&self, id: i32) -> bool{
-        let current: &Node = &self;
-        if current.id != id && current.next == None{
-            return false;
-        }
-        let next: &Node = current.next;
-        while next != None && next.id != id{
-            current = next;
-            next = next.next;
-        }
-        if next == None{
-            return false;
-        }
-        current.next = next.next;
-        return true;
-    }
-    fn new(value: i32) -> Node{
-        count = count+1;
-        return Node {next: None, val: value, id: count}; 
     }
 }
 
-fn main() {
-    println!("Hello, world!");
+fn main(){
+    let list = List::Cons(1, Box::new(List::Cons(5, Box::new(List::Nil))));
 }
